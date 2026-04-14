@@ -1,0 +1,5 @@
+numpy<2
+pygame
+opencv-python
+networkx
+carla==0.9.15
