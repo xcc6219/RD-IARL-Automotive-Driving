@@ -19,6 +19,7 @@ This project implements a **Deep Deterministic Policy Gradient (DDPG)** agent wi
 - [Evaluation Metrics](#evaluation-metrics)
 - [Task Scenarios](#task-scenarios)
 - [Observation & Action Space](#observation--action-space)
+- [Appendix (Theoretical Proofs)](#appendix-theoretical-proofs)
 - [Citation](#citation)
 - [License](#license)
 
@@ -93,6 +94,8 @@ RD-IARL-E2ERL/
 ├── requirements.txt                        # Python dependencies
 ├── run_test.py                             # Evaluation entry point
 ├── model.py                                # Network architecture & inference agent
+├── appendix/                               # Supplementary theoretical proofs
+│   └── Appendix.pdf                        #   Proofs of the theorems stated in the paper
 ├── model_weights/                          # Pretrained weights
 │   └── weights/
 │       ├── actor_net.pth                   #   Actor network
@@ -427,6 +430,18 @@ print(grouped['steer'].apply(lambda s: np.mean(np.abs(np.diff(s)))))  # steer je
 | 1 | [-1, 1] | Steering |
 
 The final control command is computed via incremental action blending: `a = (1 - α) * a_prev + α * δ`, where `α = 0.8` by default and `δ` is the actor network output.
+
+---
+
+## Appendix (Theoretical Proofs)
+
+The [appendix/Appendix.pdf](appendix/Appendix.pdf) file provides the full derivations and formal proofs of the theorems stated in the main paper, including:
+
+- Convergence and stability analysis of the **incremental action blending** scheme `a = (1 - α) · a_prev + α · δ`.
+- Properties of the **reward-deviation** formulation used to shape the RD-IARL objective.
+- Boundedness and Lipschitz guarantees that justify the residual actor parameterisation.
+
+Readers are encouraged to consult the appendix for the technical assumptions, lemmas, and step-by-step proofs that are only summarised in the main text.
 
 ---
 
